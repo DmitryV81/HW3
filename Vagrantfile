@@ -7,7 +7,7 @@ MACHINES = {
   :lvm => {
         :box_name => "centos/7",
         :box_version => "1804.02",
-        :ip_addr => '192.168.11.101',
+        :ip_addr => '192.168.56.11',
     :disks => {
         :sata1 => {
             :dfile => home + '/VirtualBox VMs/sata1.vdi',
@@ -68,8 +68,8 @@ Vagrant.configure("2") do |config|
         box.vm.provision "shell", inline: <<-SHELL
             mkdir -p ~root/.ssh
             cp ~vagrant/.ssh/auth* ~root/.ssh
-            yum install -y mdadm smartmontools hdparm gdisk
-          SHELL
+            yum install -y mdadm smartmontools hdparm gdisk dracut xfsdump xfsrestore
+        SHELL
   
         end
     end
